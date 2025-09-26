@@ -1,39 +1,75 @@
 <script setup lang="ts">
+import type { ButtonSeverity, ButtonSize, ButtonVariant } from '@/types/button'
 import { Button } from 'primevue'
+import { computed, useSlots } from 'vue'
 
 // Expose the main PrimeVue props you care about
-defineProps<{
-  label?: string
+const {
+  label = undefined,
+  icon = undefined,
+  iconPos = 'right',
+  variant = undefined,
+  href = undefined,
+  severity = undefined,
+  size = 'small',
+  disabled = false,
+  loading = false,
+  raised = false,
+  rounded = false,
+  text = false,
+  outlined = false,
+} = defineProps<{
+  label?: string | number
   icon?: string
-  iconPos?: 'left' | 'right' | 'top' | 'bottom'
-  severity?: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger'
-  outlined?: boolean
+  href?: string
+  variant?: ButtonVariant
+  severity?: ButtonSeverity
+  size?: ButtonSize
+
+  disabled?: boolean
+  loading?: boolean
+  iconPos?: 'right' | 'left'
+  raised?: boolean
   rounded?: boolean
   text?: boolean
-  size?: 'small' | 'large'
-  disabled?: boolean
+  outlined?: boolean
 }>()
+
+const slots = useSlots()
+
+const iconOnly = computed(() => Boolean(!label && !slots.label))
 </script>
 
 <template>
   <Button
-    v-bind="$props"
-    v-on="$attrs"
-    :class="[
-      // ✅ Tailwind defaults
-      'px-4 py-2 rounded-lg font-medium transition-all duration-200',
-
-      // ✅ Theme per severity (you can expand this)
-      severity === 'success' && 'bg-green-600 text-white hover:bg-green-700',
-      severity === 'danger' && 'bg-red-400 text-white hover:bg-red-600',
-      severity === 'primary' && 'bg-blue-600 text-white hover:bg-blue-700',
-      severity === 'secondary' && 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-
-      // ✅ Handle text buttons
-      text && 'bg-transparent shadow-none hover:bg-gray-100',
-
-      // ✅ Handle disabled
-      disabled && 'opacity-50 cursor-not-allowed',
-    ]"
-  />
+    :label="label?.toLocaleString()"
+    :icon="icon"
+    :icon-pos="iconPos"
+    :href="href"
+    :variant="variant"
+    :severity="severity"
+    :size="size"
+    :disabled="disabled"
+    :loading
+    :raised="raised"
+    :rounded="rounded"
+    :text="text"
+    :outlined="outlined"
+    class="app-button"
+    :class="{ '!w-8 !h-8': iconOnly }"
+  >
+    <template #default>
+      <slot v-if="$slots.default">
+        <div class="flex items-center whitespace-nowrap leading-[1]">
+          <slot name="left-icon">
+            <i v-if="icon && iconPos == 'left'" :class="[icon, 'mr-[6px] text-md']" />
+          </slot>
+          {{ label }}
+          <slot name="right-icon">
+            <i v-if="icon && iconPos == 'right'" :class="[icon, 'ml-[6px] text-md']" />
+          </slot>
+        </div>
+      </slot>
+    </template>
+  </Button>
 </template>

@@ -18,7 +18,7 @@ import BulletCard from '@/components/profile/BulletCard.vue'
 
 const route = useRoute()
 
-const { getChessProfile, getProfileStats } = useChessProfile()
+const { getUserProfile, getProfileStats } = useChessProfile()
 const loading = ref(false)
 
 watch(
@@ -27,24 +27,24 @@ watch(
     loading.value = true
     try {
       const username = typeof newSearch === 'string' ? newSearch : undefined
-      await Promise.all([getChessProfile(username), getProfileStats(username)])
+      await Promise.all([getUserProfile(username), getProfileStats(username)])
     } finally {
       loading.value = false
     }
   },
   { immediate: true },
 )
-
-const { profileStats, profileLoading } = storeToRefs(useChessProfileStore())
 </script>
 <template>
-  <AppLoader :loading="loading" />
-  <ProfileHeader />
-  <div class="w-full mt-20">
-    <div class="flex w-full gap-6">
-      <RapidCard />
-      <BlitzCard />
-      <BulletCard />
+  <AppLoader v-if="loading" full-page />
+  <div class="px-6">
+    <ProfileHeader />
+    <div class="w-full mt-12 md:mt-22">
+      <div class="grid lg:grid-cols-3 grid-cols-1 w-full gap-6">
+        <RapidCard />
+        <BlitzCard />
+        <BulletCard />
+      </div>
     </div>
   </div>
 </template>

@@ -1,23 +1,23 @@
 export type CountryDetails = {
-  '@id': string
-  code: string
-  name: string
+  '@id'?: string
+  code?: string
+  name?: string
 }
 
 export type StatsLastType = {
-  rating: number
-  date: number
-  rd: number
+  rating?: number
+  date?: number
+  rd?: number
 }
 export type StatsRecord = {
-  win: number
-  loss: number
-  draw: number
+  win?: number
+  loss?: number
+  draw?: number
 }
 export type StatsRating = {
-  rating: number
-  date: number
-  game: string
+  rating?: number
+  date?: number
+  game?: string
 }
 
 export type ChessComPlayer = {
@@ -43,30 +43,30 @@ export type ChessComPlayer = {
 }
 
 export type ProfileStatsType = {
-  chess_rapid: {
-    last: StatsLastType
-    best: StatsRating
-    record: StatsRecord
+  chess_rapid?: {
+    last?: StatsLastType
+    best?: StatsRating
+    record?: StatsRecord
   }
-  chess_bullet: {
-    last: StatsLastType
-    best: StatsRating
-    record: StatsRecord
+  chess_bullet?: {
+    last?: StatsLastType
+    best?: StatsRating
+    record?: StatsRecord
   }
-  chess_blitz: {
-    last: StatsLastType
-    best: StatsRating
-    record: StatsRecord
+  chess_blitz?: {
+    last?: StatsLastType
+    best?: StatsRating
+    record?: StatsRecord
   }
-  fide: number
-  tactics: {
-    highest: StatsRating
-    lowest: StatsRating
+  fide?: number
+  tactics?: {
+    highest?: StatsRating
+    lowest?: StatsRating
   }
-  puzzle_rush: {
-    best: {
-      total_attempts: number
-      score: number
+  puzzle_rush?: {
+    best?: {
+      total_attempts?: number
+      score?: number
     }
   }
 }
