@@ -28,9 +28,7 @@ export function useChessProfile() {
     'AR',
     'TR',
   ]
-  // Helper
 
-  const loading = ref(false)
   const errors = ref<any>()
   // Data
   const { profile, profileLoading, profileStats, profileList, profileListLoading } =
@@ -88,14 +86,12 @@ export function useChessProfile() {
   async function getRandomPlayers(countryCount: number = 15, playersPerCountry: number = 1) {
     profileListLoading.value = true
     try {
-      // pick N random countries using Fisher-Yates shuffle
       const randomCountries = shuffleArray(countries).slice(0, countryCount)
 
       const allProfiles: any[] = []
 
       await Promise.all(
         randomCountries.map(async (countryCode) => {
-          // fetch players for this country
           const res = await $fetch<{ players: string[] }>(
             `https://api.chess.com/pub/country/${countryCode}/players`,
           )
