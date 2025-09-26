@@ -19,6 +19,14 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --p-button-primary-border-color: none !important;
+  --p-button-border-color: #ffffff !important;
+  --p-button-primary-border-width: 1px !important;
+  --p-button-outlined-primary-color: #ffffff !important;
+
+  --p-button-primary-hover-border-color: none !important;
+  --p-button-primary-active-border-color: none !important;
 }
 
 /* semantic color variables for this project */
@@ -56,6 +64,10 @@
   box-sizing: border-box;
 
   font-weight: normal;
+}
+.fi {
+  display: flex;
+  align-items: center;
 }
 
 body {

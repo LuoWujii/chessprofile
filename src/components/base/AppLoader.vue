@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { Chip } from 'primevue'
 import ProgressSpinner from 'primevue/progressspinner'
+import { Transition } from 'vue'
 
 const props = withDefaults(
   defineProps<{
-    loading: boolean
     title?: string
     fullPage?: boolean
     message?: string
@@ -19,7 +19,6 @@ const props = withDefaults(
 <template>
   <Transition name="fade">
     <div
-      v-if="loading"
       :class="[
         'inset-0 z-100 flex items-center justify-center bg-black/20',
         fullPage ? 'fixed backdrop-blur-[1.5px]' : 'absolute h-full w-full',

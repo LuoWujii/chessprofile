@@ -3,10 +3,14 @@ import { defineStore } from 'pinia'
 import type { ChessComPlayer, ProfileStatsType } from '@/types/profile'
 
 export const useChessProfileStore = defineStore('profile', () => {
-  const profile = ref<ChessComPlayer>()
-  const searchUser = ref()
-  const profileStats = ref<ProfileStatsType>()
+  const profileListLoading = ref(false)
   const profileLoading = ref(false)
 
-  return { profile, searchUser, profileLoading, profileStats }
+
+  const profile = ref<ChessComPlayer>()
+  const profileList = ref<ChessComPlayer[]>([])
+  const searchUser = ref()
+  const profileStats = ref<ProfileStatsType>()
+
+  return { profile, searchUser, profileLoading, profileStats, profileList, profileListLoading }
 })
