@@ -9,8 +9,7 @@ export const useChessProfileStore = defineStore('profile', () => {
 
   const profile = ref<ChessComPlayer>()
   const profileList = ref<ChessComPlayer[]>([])
-  const searchUser = ref()
   const profileStats = ref<ProfileStatsType>()
 
-  return { profile, searchUser, profileLoading, profileStats, profileList, profileListLoading }
+  return { profile, profileLoading, profileStats, profileList, profileListLoading }
 })
