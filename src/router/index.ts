@@ -1,11 +1,13 @@
 import HomePage from '@/views/HomePage.vue'
 import Profile from '@/views/Profile.vue'
+import TicTacToe from '@/views/TicTacToe.vue'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', component: HomePage },
   { path: '/profile', component: Profile },
   { path: '/profile/:search', component: Profile },
+  { path: '/tic-tac-toe', component: TicTacToe },
 ]
 
 const router = createRouter({
